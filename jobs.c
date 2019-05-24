@@ -1,5 +1,6 @@
 #include "shell.h"
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include <stdio.h>
 #include <signal.h>
@@ -258,8 +259,7 @@ void print_jobs(cmd_t cmd){
 }
 
 
-void cd(char **argv)
-{
+void cd(char **argv) {
 	if (argv[0] == NULL)
 		return;
 	if (argv[1] == NULL)

@@ -8,7 +8,7 @@ int promptline(char *prompt_, char *line, int sizline)
 {
 	int n = 0;
 	char prompt[1024];
-	sprintf(prompt,"\x1b[34mMYSHELL:\x1b[32m[%s]\x1b[0m ", prompt_);
+	sprintf(prompt,"\x1b[94mMYSHELL:\x1b[92m[%s]\x1b[0m ", prompt_);
 	write(1, prompt, strlen(prompt));
 	while (1)
 	{
