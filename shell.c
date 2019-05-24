@@ -14,6 +14,7 @@
 //char *appfile;
 struct command cmds[MAXCMDS];
 job_t jobs[MAXJOBS];
+char cwd[1024];
 //char bkgrnd;
 
 int main(int argc,char *argv[])
@@ -28,9 +29,9 @@ int main(int argc,char *argv[])
     signal(SIGTSTP, SIG_IGN);
 	signal(SIGTTOU, SIG_IGN);
 
-	sprintf(prompt,"[%s] ",argv[0]);
+    getcwd(cwd, sizeof(cwd));
 
-    while(promptline(prompt, line, sizeof(line)) > 0)
+    while(promptline(getcwd(cwd, sizeof(cwd)), line, sizeof(line)) > 0)
     {    /*
             l eof  */
         wait_bg();
@@ -96,6 +97,11 @@ int main(int argc,char *argv[])
 				if (strcmp(cmds[pipeline_start].cmdargs[0], "exit") == 0) {
 					return EXIT_SUCCESS;
 				}
+
+                if (strcmp(cmds[pipeline_start].cmdargs[0], "cd") == 0) {
+                    cd(cmds[pipeline_start].cmdargs);
+                    continue;
+                }
 
                 if (strcmp(cmds[pipeline_start].cmdargs[0], "jobs") == 0 || strcmp(cmds[pipeline_start].cmdargs[0], "joblist") == 0){
                     print_jobs(cmds[pipeline_start]);

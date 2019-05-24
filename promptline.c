@@ -4,10 +4,11 @@
 #include <string.h>
 #include "shell.h"
 
-int promptline(char *prompt, char *line, int sizline)
+int promptline(char *prompt_, char *line, int sizline)
 {
 	int n = 0;
-
+	char prompt[1024];
+	sprintf(prompt,"\x1b[34mMYSHELL:\x1b[32m[%s]\x1b[0m ", prompt_);
 	write(1, prompt, strlen(prompt));
 	while (1)
 	{

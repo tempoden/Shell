@@ -96,3 +96,5 @@ void print_jobs(cmd_t);/*Print list of jobs*/
 void pop_done();/*Remove terminated and done jobs from jobs[]*/
 
 int check_for_termination(job_t*);/*Check job for abnormal termination (WIFSIGNALED)*/
+
+void cd (char **);

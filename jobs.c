@@ -257,6 +257,17 @@ void print_jobs(cmd_t cmd){
 		fclose(of);
 }
 
+
+void cd(char **argv)
+{
+	if (argv[0] == NULL)
+		return;
+	if (argv[1] == NULL)
+		chdir(getenv("HOME"));
+	else {
+		chdir(argv[1]);
+	}
+}
 /*
 ALL IS DONE: (THUG LIFE)
 
